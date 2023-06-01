@@ -6,8 +6,7 @@ import { HttpError } from '../errors/HttpError'
 const errorHandlerMiddleware = (
   err: HttpError,
   req: Request,
-  res: Response,
-  next: NextFunction
+  res: Response
 ) => {
   const defaultError = {
     statusCode: err.statusCode || StatusCodes.INTERNAL_SERVER_ERROR,
