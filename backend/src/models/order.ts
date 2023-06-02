@@ -1,6 +1,6 @@
 import { Ref, prop, getModelForClass } from '@typegoose/typegoose'
 import { User } from './user'
-import { Payments } from './payments'
+import { Payment } from './payments'
 
 class items {
   @prop({ required: true })
@@ -20,8 +20,8 @@ export class Order {
   @prop({ ref: User })
   public userId?: Ref<User>
 
-  @prop({ ref: Payments })
-  public paymentStatus!: Ref<Payments>
+  @prop({ ref: Payment })
+  public paymentStatus!: Ref<Payment>
 
   @prop({ required: true })
   public status!: string

@@ -1,7 +1,7 @@
 import { Ref, prop, getModelForClass } from '@typegoose/typegoose'
 import { User } from './user'
 
-export class Payments {
+export class Payment {
   @prop({ ref: User })
   public userId?: Ref<User>
 
@@ -15,4 +15,4 @@ export class Payments {
   public token!: string
 }
 
-export const PaymentsModel = getModelForClass(Payments)
+export const PaymentModel = getModelForClass(Payment)
