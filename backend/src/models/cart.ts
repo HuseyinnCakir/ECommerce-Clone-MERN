@@ -10,7 +10,7 @@ export class Cart {
   @prop({ required: true })
   public state!: string
   @prop({ default: () => Date.now() })
-  public updatedAt!: Date
+  public modifiedOn!: Date
   @prop({ ref: Product })
   public products!: Ref<Product>[]
 }

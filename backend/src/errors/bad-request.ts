@@ -1,7 +1,7 @@
 import { StatusCodes } from 'http-status-codes'
-import CustomAPIError from './custom-api'
+import { HttpError } from './HttpError'
 
-class BadRequestError extends CustomAPIError {
+class BadRequestError extends HttpError {
   public statusCode: number
   constructor(message: string) {
     super(message)
