@@ -1,45 +1,30 @@
 import { prop, getModelForClass } from '@typegoose/typegoose'
 
-class Skus {
+export class Product {
   @prop()
-  public sku!: string
+  public name!: string
 
   @prop()
   public price!: number
-
   @prop()
-  public quantity!: number
-
-  @prop()
-  public features!: number
-}
-
-export class Product {
-  @prop({ required: true })
-  public name!: string
-
-  @prop({ required: true, type: () => [Skus] })
-  public skus!: Skus[]
-
-  @prop({ required: true })
   public image!: string
 
-  @prop({ required: true })
+  @prop()
   public brand!: string
 
-  @prop({ required: true })
-  public category!: string
+  @prop()
+  public category!: [string]
 
-  @prop({ required: true })
+  @prop()
   public description!: string
 
-  @prop({ required: true, default: 0 })
-  public countInStock!: number
+  @prop()
+  public features?: [string]
 
-  @prop({ required: true, default: 0 })
+  @prop({ default: 0 })
   public rating!: number
 
-  @prop({ required: true, default: 0 })
+  @prop({ default: 0 })
   public numReviews!: number
 }
 

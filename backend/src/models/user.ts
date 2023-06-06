@@ -1,19 +1,22 @@
 import { modelOptions, prop, getModelForClass } from '@typegoose/typegoose'
 
-class Address {
+export class Address {
   @prop()
   public country?: string
 
-  @prop()
-  public street?: string
+  @prop({ min: 5 })
+  public street1?: string
+  @prop({ min: 5 })
+  public street2?: string
 
-  @prop()
+  @prop({ min: 2 })
   public city?: string
 
-  @prop()
+  @prop({ min: 4 })
   public zip?: string
 }
-enum Gender {
+
+enum Genders {
   male = 'male',
   female = 'female',
   undisclosed = 'undisclosed',
@@ -27,8 +30,8 @@ export class User {
   public firstName!: string
   @prop({ required: [true, 'Please provide last name'] })
   public lastName!: string
-  @prop({ default: 'undisclosed' })
-  public gender?: Gender
+  @prop({ enum: Genders })
+  public gender?: Genders
   @prop({ required: [true, 'Please provide email'], unique: true })
   public email!: string
   @prop({
@@ -42,7 +45,7 @@ export class User {
   public billingAddress?: Address
   @prop()
   public shippingAddress?: Address
-  @prop({ required: true, default: false })
+  @prop({ default: false })
   public isAdmin!: boolean
 }
 

@@ -13,6 +13,8 @@ export class Payment {
 
   @prop({ required: true })
   public token!: string
+  @prop({ required: true })
+  public gateway!: string
 }
 
 export const PaymentModel = getModelForClass(Payment)
