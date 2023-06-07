@@ -27,7 +27,7 @@ export class LoginController {
       gender,
     })
     const token = user.createJWT()
-    attachCookie(res, token)
+    attachCookie(res, token, user.isAdmin)
     res.status(StatusCodes.CREATED).json({
       user: {
         email: user.email,
@@ -51,9 +51,11 @@ export class LoginController {
       throw new UnAuthenticatedError('Invalid Credentials')
     }
     const token = user.createJWT()
-    attachCookie(res, token)
+    attachCookie(res, token, user.isAdmin)
 
-    res.status(StatusCodes.OK).json('Login successfully.')
+    res
+      .status(StatusCodes.OK)
+      .json({ userId: user._id, name: user.firstName, email: user.email })
   }
 
   @get('/logout')
