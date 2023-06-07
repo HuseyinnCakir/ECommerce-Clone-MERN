@@ -4,6 +4,7 @@ import connectDB from './db/connect'
 import bodyParser from 'body-parser'
 import notFoundMiddleware from './middleware/not-found'
 import errorHandleMiddleware from './middleware/error-handler'
+import './controllers/authController'
 import { AppRouter } from './AppRouter'
 const app = express()
 dotenv.config()
@@ -11,6 +12,7 @@ app.get('/', (req: Request, res: Response) => {
   res.send('Welcome!')
 })
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(express.json())
 app.use(AppRouter.getInstance())
 app.use(notFoundMiddleware)
 app.use(errorHandleMiddleware)

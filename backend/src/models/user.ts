@@ -12,15 +12,15 @@ export class Address {
   @prop()
   public country?: string
 
-  @prop({ min: 5 })
+  @prop()
   public street1?: string
-  @prop({ min: 5 })
+  @prop()
   public street2?: string
 
-  @prop({ min: 2 })
+  @prop()
   public city?: string
 
-  @prop({ min: 4 })
+  @prop()
   public zip?: string
 }
 
@@ -61,7 +61,7 @@ export class User {
   @prop({ default: false })
   public isAdmin!: boolean
 
-  public async createJWT(this: DocumentType<User>) {
+  public createJWT(this: DocumentType<User>) {
     if (process.env.JWT_SECRET) {
       return jwt.sign({ userId: this._id }, process.env.JWT_SECRET, {
         expiresIn: process.env.JWT_LIFETIME,
@@ -69,6 +69,13 @@ export class User {
     } else {
       throw new Error('Key is not set')
     }
+  }
+  public async comparePassword(
+    this: DocumentType<User>,
+    candidatePassword: string
+  ) {
+    const isMatch = await bcrypt.compare(candidatePassword, this.password)
+    return isMatch
   }
 }
 
